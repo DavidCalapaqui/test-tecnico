@@ -22,6 +22,7 @@ Route::get('/clientes', 'App\Http\Controllers\ClienteController@index');
 Route::get('/clientes/{id}', 'App\Http\Controllers\ClienteController@show');
 
 
+
 Route::get('/paquetes', 'App\Http\Controllers\PaqueteController@index');
 Route::get('/paquetes/{id}', 'App\Http\Controllers\PaqueteController@show');
 Route::get('/paquetes/cliente/{idCliente}', 'App\Http\Controllers\PaqueteController@paquetesPorCliente');

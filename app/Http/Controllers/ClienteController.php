@@ -17,7 +17,12 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::all();
-        return $clientes;
+
+        if(count($clientes)>0){
+            return response()->json(["clientes" => $clientes], 200);
+        }else{
+            return response()->json(["msg" => "No hay clientes" , 404]);
+        }
     }
 
     /**
@@ -27,7 +32,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -49,8 +54,14 @@ class ClienteController extends Controller
      */
     public function show(Request $req)
     {
-        $cliente = Cliente::findOrFail( $req->id);
-        return $cliente;
+        $cliente = Cliente::where('id', $req->id)->get();
+        // echo($cliente);
+        if( !empty($cliente) ){
+            return response()->json(["ok"=>true, "cliente"  => $cliente], 200);
+        }else{
+            return response()->json(["ok"=>false ,"msg"=>"No existe un cliente con ese id"], 404);
+        }
+
     }
 
     /**
